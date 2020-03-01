@@ -2,7 +2,7 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>小强社区</title>
+    <title>发布</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <script src="../js/bootstrap.min.js" type="application/javascript"></script>
@@ -15,7 +15,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">小强社区</span>
             </button>
-            <a class="navbar-brand" href="">小强社区</a>
+            <a class="navbar-brand" href="#">小强社区</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -26,12 +26,10 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.user != null}">
-                    <a href="/publish">发布</a>
-                </li>
-                <li><a th:if="${session.user == null}" th:href="@{/toLogin}">登录</a></li>
-                <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getUsername()}">我 <span class="caret"></span></a>
+
+                <li><a th:if="${session.user == null}"  th:href="@{/toLogin}">登录</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
@@ -46,24 +44,33 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <span class="glyphicon glyphicon-list" aria-hidden="true" style="font-size: 22px">发现</span>
+            <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 22px">发布</span>
             <hr>
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-rounded" style="width: 70px" height="70px" src="https://i.loli.net/2020/02/25/WMPZueC9fw2GOdK.png" >
-                    </a>
+            <form th:action="@{/doPublish}">
+                <div class="form-group">
+                    <label for="title">问题标题</label>
+                    <input type="title" class="form-control" id="title" name="title" placeholder="问题标题">
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Media heading</h4>
-                    店家<br>
-                    <span style="font-size: 12px ; font-weight:normal; color:#999">2个回复.31浏览.1小时前</span>
+
+                <div class="form-group">
+                    <label for="title">问题补充</label>
+                    <textarea name = "description" id="description" class="form-control" rows="3"></textarea>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label for="title">添加标签</label>
+                    <textarea name = "tag" id="tag" class="form-control" rows="3"></textarea>
+                </div>
+                    <span th:if="${session.user == null}" class="alert alert-danger" th:text="${'用户未登录'}"></span><br><br><br>
+                    <button th:align="center" type="submit" class="btn btn-success"  >
+                        发布
+                    </button>
+            </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>热门话题</h3>
-
+            <h3>问题发起指南</h3>
+            问题标题：请用简单的语言描述你所发布的问题<br>
+            问题补充：详细补充您的问题内容，并确保问题描述清晰直观
         </div>
     </div>
 </div>
