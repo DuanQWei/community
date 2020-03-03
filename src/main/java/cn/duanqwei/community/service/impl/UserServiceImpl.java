@@ -2,14 +2,17 @@ package cn.duanqwei.community.service.impl;
 
 import cn.duanqwei.community.bean.Question;
 import cn.duanqwei.community.bean.User;
+import cn.duanqwei.community.dto.PageDto;
 import cn.duanqwei.community.dto.QuestionDto;
 import cn.duanqwei.community.mapper.QuestionMapper;
 import cn.duanqwei.community.mapper.UserMapper;
 import cn.duanqwei.community.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,10 +35,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User queryUserByname(String username) {
-        Example example = new Example(User.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo(username);
-        return userMapper.selectOneByExample(example);
+
+        return userMapper.getUserByUsername(username);
     }
 
     /**
@@ -62,13 +63,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<QuestionDto> getQuestionList() {
-        List<Question> questions = questionMapper.selectAll();
-        for (Question question : questions) {
-            Example example = new Example(User.class);
-            Example.Criteria criteria = example.createCriteria();
+    public PageDto getQuestionList(Integer page, Integer size) {
+        Integer offset = size * (page - 1);
 
+        List<QuestionDto> questionDtoList = new ArrayList<>();
+
+        //查询每页显示的数据
+        List<Question> questions = questionMapper.list(offset,size);
+
+        PageDto pageDto = new PageDto();
+
+        for (Question question : questions) {
+            Integer id = question.getCreator();
+            User user = userMapper.getUserByCreator(id);
+            QuestionDto questionDto = new QuestionDto();
+            BeanUtils.copyProperties(question,questionDto);
+            questionDto.setUser(user);
+            questionDtoList.add(questionDto);
         }
-        return null;
+
+        Integer totalCount = questionMapper.count();
+        pageDto.setQuestions(questionDtoList);
+        pageDto.setPagination(totalCount,page,size);
+        return pageDto;
+    }
+
+    @Override
+    public Integer count() {
+        return questionMapper.count();
     }
 }

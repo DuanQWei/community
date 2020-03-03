@@ -3,9 +3,7 @@ package cn.duanqwei.community.controller;
 import cn.duanqwei.community.bean.Question;
 import cn.duanqwei.community.bean.User;
 import cn.duanqwei.community.service.UserService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +27,8 @@ public class PublishController {
     @RequestMapping("/doPublish")
     public String doPublish(
             @RequestParam("title")String title,
-            @RequestParam("title")String description,
-            @RequestParam("title")String tag,
+            @RequestParam("description")String description,
+            @RequestParam("tag")String tag,
             HttpServletRequest request,
             Model model
     ){
@@ -46,6 +44,6 @@ public class PublishController {
         question.setCreator(user.getId());
         question.setCreateTime(new Date());
         userService.create(question);
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

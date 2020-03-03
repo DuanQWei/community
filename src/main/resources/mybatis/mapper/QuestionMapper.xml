@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.duanqwei.community.mapper.QuestionMapper">
+	<select id="list" resultType="cn.duanqwei.community.bean.Question">
+    	select * from question limit #{offset}, #{size}
+  </select>
+    <select id="count" resultType="java.lang.Integer">
+		select count(1) from question
+	</select>
+
+
+</mapper>

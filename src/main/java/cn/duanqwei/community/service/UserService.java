@@ -2,9 +2,7 @@ package cn.duanqwei.community.service;
 
 import cn.duanqwei.community.bean.Question;
 import cn.duanqwei.community.bean.User;
-import cn.duanqwei.community.dto.QuestionDto;
-
-import java.util.List;
+import cn.duanqwei.community.dto.PageDto;
 
 public interface UserService {
     //注册用户
@@ -19,5 +17,7 @@ public interface UserService {
     public User queryUserByToken(String token);
 
     //查询所有的问题
-    public List<QuestionDto> getQuestionList();
+    public PageDto getQuestionList(Integer page, Integer size);
+    //查询问题的个数
+    public Integer count();
 }

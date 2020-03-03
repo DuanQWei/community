@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.duanqwei.community.mapper.UserMapper">
+    <select id="getUserByCreator" resultType="cn.duanqwei.community.bean.User">
+    	select * from user where id = #{creator}
+  </select>
+
+
+    <select id="getUserByUsername" resultType="cn.duanqwei.community.bean.User">
+    	select * from user where username = #{username}
+  </select>
+</mapper>
