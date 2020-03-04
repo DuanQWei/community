@@ -3,12 +3,13 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.duanqwei.community.mapper.QuestionMapper">
-	<select id="list" resultType="cn.duanqwei.community.bean.Question">
-    	select * from question limit #{offset}, #{size}
-  </select>
+
     <select id="count" resultType="java.lang.Integer">
 		select count(1) from question
 	</select>
 
 
+	<select id="selectInfo" resultType="cn.duanqwei.community.dto.QuestionDto">
+		SELECT question.*,user.`avatar_url` FROM question LEFT JOIN `user` ON question.`creator` = user.`id`
+	</select>
 </mapper>

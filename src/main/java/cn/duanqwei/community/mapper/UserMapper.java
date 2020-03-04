@@ -9,4 +9,10 @@ public interface UserMapper extends Mapper<User> {
     User getUserByCreator(Integer creator);
 
     User getUserByUsername(String username);
+
+
+    User selectById(Integer id);
+
+
+
 }

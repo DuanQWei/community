@@ -1,6 +1,5 @@
 package cn.duanqwei.community.dto;
 
-import cn.duanqwei.community.bean.User;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,5 +15,5 @@ public class QuestionDto {
     private Integer viewCount;
     private Integer starCount;
     private String tag;
-    private User user;
+    private String avatarUrl;
 }
