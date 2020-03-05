@@ -11,6 +11,7 @@ class CommunityApplicationTests {
     @Autowired
     private QuestionMapper questionMapper;
 
+
     @Test
     void contextLoads() {
         String s = MD5Util.md5Encrypt32Lower("123456");
@@ -24,6 +25,7 @@ class CommunityApplicationTests {
         PageInfo<Question> pageInfo = new PageInfo<>(questions);
         System.out.println(pageInfo);*/
     }
+
 
 
 }

@@ -12,10 +12,17 @@
     	select * from user where username = #{username}
   </select>
 
+    <select id="queryUserByToken" resultType="cn.duanqwei.community.bean.User">
+    	select * from user where token = #{token}
+  </select>
 
     <select id="selectById" resultType="cn.duanqwei.community.bean.User">
     	select * from user where id = #{id}
   </select>
-
-
+    <update id="update">
+        UPDATE user SET token = #{token} WHERE id = #{id}
+    </update>
+    <select id="selectUsername" resultType="java.lang.String">
+    	select username from user where id = #{id}
+  </select>
 </mapper>

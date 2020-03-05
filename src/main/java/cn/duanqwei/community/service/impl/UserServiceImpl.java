@@ -1,6 +1,5 @@
 package cn.duanqwei.community.service.impl;
 
-import cn.duanqwei.community.bean.Question;
 import cn.duanqwei.community.bean.User;
 import cn.duanqwei.community.dto.QuestionDto;
 import cn.duanqwei.community.mapper.QuestionMapper;
@@ -8,7 +7,6 @@ import cn.duanqwei.community.mapper.UserMapper;
 import cn.duanqwei.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -36,27 +34,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserByUsername(username);
     }
 
-    /**
-     * 发布
-     * @param question
-     */
-    @Override
-    public void create(Question question) {
-        questionMapper.insert(question);
-    }
 
-    /**
-     * 根据token查询用户
-     * @param token
-     * @return
-     */
+
     @Override
     public User queryUserByToken(String token) {
-        Example example = new Example(User.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo(token);
-
-        return userMapper.selectOneByExample(example);
+        return userMapper.queryUserByToken(token);
     }
 
 
@@ -66,10 +48,15 @@ public class UserServiceImpl implements UserService {
         return questionMapper.selectInfo();
     }
 
+    @Override
+    public void update(Integer id, String token) {
+        userMapper.update(id,token);
+    }
 
     @Override
-    public Integer count() {
-        return questionMapper.count();
+    public String selectUsername(Integer id) {
+
+        return userMapper.selectUsername(id);
     }
 
 

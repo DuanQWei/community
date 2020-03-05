@@ -1,6 +1,5 @@
 package cn.duanqwei.community.service;
 
-import cn.duanqwei.community.bean.Question;
 import cn.duanqwei.community.bean.User;
 import cn.duanqwei.community.dto.QuestionDto;
 
@@ -12,14 +11,12 @@ public interface UserService {
     //根据用户名查询用户
     public User queryUserByname(String username);
 
-    //发起一个问题
-    public void create(Question question);
+
 
     //根据token查询用户
     public User queryUserByToken(String token);
 
-    //查询问题的个数
-    public Integer count();
+
 
 
 
@@ -29,4 +26,8 @@ public interface UserService {
     //查询出来所有的问题和图像
     List<QuestionDto> selectAllInfo();
 
+    //更新数据库
+    void update(Integer id,String token);
+
+    String selectUsername(Integer id);
 }

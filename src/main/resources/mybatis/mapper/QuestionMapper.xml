@@ -11,5 +11,13 @@
 
 	<select id="selectInfo" resultType="cn.duanqwei.community.dto.QuestionDto">
 		SELECT question.*,user.`avatar_url` FROM question LEFT JOIN `user` ON question.`creator` = user.`id`
+</select>
+
+	<select id="selectById" resultType="cn.duanqwei.community.dto.QuestionDto">
+		SELECT question.*,user.`avatar_url` FROM question LEFT JOIN `user` ON question.`creator` = user.`id` where creator = #{id}
+	</select>
+
+	<select id="queryById" resultType="cn.duanqwei.community.bean.Question">
+		SELECT * FROM question where id = #{id}
 	</select>
 </mapper>
