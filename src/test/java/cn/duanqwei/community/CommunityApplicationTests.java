@@ -1,6 +1,7 @@
 package cn.duanqwei.community;
 
 import cn.duanqwei.community.mapper.QuestionMapper;
+import cn.duanqwei.community.mapper.UserMapper;
 import cn.duanqwei.community.util.MD5Util;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ class CommunityApplicationTests {
     private QuestionMapper questionMapper;
 
 
+    @Autowired
+    private UserMapper userMapper;
     @Test
     void contextLoads() {
         String s = MD5Util.md5Encrypt32Lower("123456");
@@ -20,10 +23,7 @@ class CommunityApplicationTests {
 
     @Test
     void test01(){
-       /* PageHelper.startPage(1, 2);
-        List<Question> questions = questionMapper.selectAll();
-        PageInfo<Question> pageInfo = new PageInfo<>(questions);
-        System.out.println(pageInfo);*/
+        System.out.println(userMapper.queryImgUrl(4));
     }
 
 

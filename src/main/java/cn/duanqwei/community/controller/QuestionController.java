@@ -22,10 +22,13 @@ public class QuestionController {
     public String question(@PathVariable(name = "id")Integer id,
                            Model model){
         QuestionDto questionDto = questionService.getQuestionById(id);
+
         Integer userId = questionDto.getCreator();
+        String avatarUrl = userService.queryImgUrl(userId);
         String username = userService.selectUsername(userId);
         model.addAttribute("username",username);
         model.addAttribute("questionDto",questionDto);
+        model.addAttribute("avatarUrl",avatarUrl);
         return "question";
     }
 }

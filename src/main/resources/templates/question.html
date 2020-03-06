@@ -16,21 +16,54 @@
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <hr>
-            <h4><span th:text="${questionDto.title}"></span></h4>
-            作者：<span th:text="${username}"></span>
-            阅读数：<span th:text="${questionDto.viewCount}"></span>
-            发布时间：<span th:text="${#dates.format(questionDto.createTime,'yyyy-MM-dd')}"></span>
-            <br>
+            <h4><span style="font-weight: bold" th:text="${questionDto.title}"></span></h4>
+            <div style="color: #999">
+
+            作者：<span th:text="${username}"></span> |
+            阅读数：<span th:text="${questionDto.viewCount}"></span> |
+            发布时间：<span th:text="${#dates.format(questionDto.createTime,'yyyy-MM-dd')}">
+
+                </span>
+            </div>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDto.descrition}"></div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a th:if="${session.user != null && session.user.id == questionDto.creator}" th:href="@{'/publish/'+${questionDto.id}}" style="color: #999"  >
+                    <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    编辑
+                </a>
+
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>发起人</h4>
+                <h4 style="font-weight: bold">发起人</h4>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-circle" style="height: 50px" width="50px"
+                                 th:src="${avatarUrl}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <span th:text="${username}" style="font-size: 30px"></span>
+                        </h5>
+                    </div>
+                </div>
             </div>
+
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <!--相关问题-->
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>相关问题</h4>
+                <h4 style="font-weight: bold">相关问题</h4>
+                <ul class="question-related">
+                    <li >
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
 
 </div>
 

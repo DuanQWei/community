@@ -20,4 +20,6 @@ public interface UserMapper extends Mapper<User> {
     void update(@Param("id") Integer id,@Param("token") String token);
 
     String selectUsername(@Param("id")Integer id);
+
+    String queryImgUrl(@Param("id")Integer id);
 }

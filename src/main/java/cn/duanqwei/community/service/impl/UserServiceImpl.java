@@ -59,5 +59,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectUsername(id);
     }
 
+    @Override
+    public String queryImgUrl(Integer id) {
+        return userMapper.queryImgUrl(id);
+    }
+
 
 }

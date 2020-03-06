@@ -30,4 +30,7 @@ public interface UserService {
     void update(Integer id,String token);
 
     String selectUsername(Integer id);
+
+    //根据id查询出来头像
+    String queryImgUrl(Integer id);
 }

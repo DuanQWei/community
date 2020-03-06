@@ -25,4 +25,8 @@
     <select id="selectUsername" resultType="java.lang.String">
     	select username from user where id = #{id}
   </select>
+
+    <select id="queryImgUrl" resultType="java.lang.String">
+    	select avatar_url from user where id = #{id}
+  </select>
 </mapper>
